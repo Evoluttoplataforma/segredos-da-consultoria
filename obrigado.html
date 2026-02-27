@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscrição Confirmada — A Morte da Consultoria Artesanal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --accent:#DC2626;
+  --accent-dark:#b91c1c;
+  --accent-rgb:220,38,38;
+  --bg:#0a0a0f;
+  --bg-alt:#12121f;
+  --surface:#1a1a2e;
+  --text:#e2e8f0;
+  --text-secondary:#94a3b8;
+  --text-muted:#64748b;
+  --border:#1e293b;
+  --success:#22c55e;
+  --whatsapp:#25D366;
+  --font-main:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --radius:12px;
+  --radius-sm:8px;
+  --radius-lg:20px;
+  --radius-full:9999px;
+  --max-width:720px;
+  --container-px:20px;
+  --transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+  --easing:cubic-bezier(0.16,1,0.3,1);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font-main);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;min-height:100vh}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+
+.bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+.bg-glow{position:fixed;width:500px;height:500px;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+.bg-glow--top{background:var(--accent);top:-200px;left:50%;transform:translateX(-50%);opacity:0.08}
+
+.container{max-width:var(--max-width);margin:0 auto;padding:0 var(--container-px);position:relative;z-index:1}
+
+/* HEADER */
+.header{padding:24px 0;text-align:center;border-bottom:1px solid var(--border)}
+.header__title{font-size:14px;font-weight:600;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase}
+
+/* CONFIRMATION */
+.confirm{padding:48px 0 32px;text-align:center}
+.confirm__check{width:72px;height:72px;margin:0 auto 24px;position:relative}
+.confirm__check svg{width:72px;height:72px}
+.confirm__check circle{fill:none;stroke:var(--success);stroke-width:3;stroke-dasharray:201;stroke-dashoffset:201;animation:draw-circle 0.8s var(--easing) 0.3s forwards}
+.confirm__check path{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:30;stroke-dashoffset:30;animation:draw-check 0.4s var(--easing) 1s forwards}
+@keyframes draw-circle{to{stroke-dashoffset:0}}
+@keyframes draw-check{to{stroke-dashoffset:0}}
+.confirm__h1{font-size:clamp(24px,5vw,36px);font-weight:800;letter-spacing:-0.02em;margin-bottom:12px;color:#fff}
+.confirm__text{font-size:16px;color:var(--text-secondary);max-width:480px;margin:0 auto;line-height:1.6}
+
+/* PROGRESS BAR */
+.progress{padding:32px 0 40px}
+.progress__bar{display:flex;align-items:center;justify-content:center;gap:0;position:relative}
+.progress__step{display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;z-index:1;flex:0 0 auto}
+.progress__circle{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;border:2px solid var(--border);background:var(--bg);color:var(--text-muted);transition:var(--transition)}
+.progress__circle.active{border-color:var(--success);background:var(--success);color:#fff}
+.progress__circle.active svg{display:block}
+.progress__label{font-size:12px;color:var(--text-muted);font-weight:500;text-align:center;max-width:80px;transition:var(--transition)}
+.progress__label.active{color:var(--success);font-weight:600}
+.progress__line{flex:1;height:3px;background:var(--border);min-width:40px;max-width:120px;position:relative;margin:0 -4px;margin-bottom:24px}
+.progress__line-fill{position:absolute;top:0;left:0;height:100%;background:var(--success);border-radius:2px;transition:width 0.6s var(--easing);width:0}
+.progress__line.done .progress__line-fill{width:100%}
+.progress__percent{text-align:center;margin-top:12px;font-size:14px;color:var(--text-muted)}
+.progress__percent strong{color:var(--success);font-weight:800;font-size:18px}
+
+/* CARDS */
+.cards{display:flex;flex-direction:column;gap:20px;padding-bottom:40px}
+.card{background:rgba(255,255,255,0.04);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);padding:32px 28px;transition:var(--transition);position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--border),transparent);transition:var(--transition)}
+.card.completed{border-color:rgba(34,197,94,0.2)}
+.card.completed::before{background:linear-gradient(90deg,transparent,var(--success),transparent)}
+.card__header{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.card__icon{width:48px;height:48px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.card__icon--whatsapp{background:rgba(37,211,102,0.12)}
+.card__icon--calendar{background:rgba(220,38,38,0.12)}
+.card__icon svg{width:24px;height:24px}
+.card__title{font-size:18px;font-weight:700;color:#fff}
+.card__text{font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:20px}
+.card__actions{display:flex;gap:12px;flex-wrap:wrap}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;font-family:var(--font-main);font-size:15px;font-weight:600;border:none;border-radius:var(--radius);cursor:pointer;transition:var(--transition);text-decoration:none;line-height:1}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn--whatsapp{background:var(--whatsapp);color:#fff;width:100%;box-shadow:0 0 24px rgba(37,211,102,0.3)}
+.btn--whatsapp:hover{background:#1ebd5a;box-shadow:0 0 40px rgba(37,211,102,0.4)}
+.btn--whatsapp.done{background:rgba(37,211,102,0.15);color:var(--success);cursor:default;transform:none;box-shadow:none}
+.btn--gcal{background:rgba(255,255,255,0.08);color:#fff;flex:1;min-width:180px}
+.btn--gcal:hover{background:rgba(255,255,255,0.14)}
+.btn--ics{background:rgba(255,255,255,0.08);color:#fff;flex:1;min-width:180px}
+.btn--ics:hover{background:rgba(255,255,255,0.14)}
+.btn--gcal.done,.btn--ics.done{background:rgba(34,197,94,0.1);color:var(--success);cursor:default;transform:none}
+
+/* COUNTDOWN */
+.countdown-section{padding:0 0 48px;text-align:center}
+.countdown-section__title{font-size:16px;color:var(--text-secondary);margin-bottom:16px}
+.countdown-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.countdown-item{background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.15);border-radius:var(--radius-sm);padding:14px 18px;min-width:72px;text-align:center}
+.countdown-item .num{display:block;font-size:28px;font-weight:800;color:#fff;font-variant-numeric:tabular-nums}
+.countdown-item .label{display:block;font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px}
+
+/* COMPLETE MESSAGE */
+.complete-msg{text-align:center;padding:24px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:var(--radius-lg);margin-bottom:32px;display:none}
+.complete-msg.show{display:block;animation:fadeUp 0.6s var(--easing)}
+.complete-msg p{font-size:16px;color:var(--success);font-weight:600}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* FOOTER */
+.footer{padding:32px 0;text-align:center;border-top:1px solid var(--border)}
+.footer p{font-size:13px;color:var(--text-muted)}
+
+/* CONFETTI CANVAS */
+#confetti-canvas{position:fixed;inset:0;z-index:99999;pointer-events:none;display:none}
+
+/* FADE IN */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.6s var(--easing),transform 0.6s var(--easing)}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.fade-in-delay-1{transition-delay:0.15s}
+.fade-in-delay-2{transition-delay:0.3s}
+.fade-in-delay-3{transition-delay:0.45s}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  :root{--container-px:16px}
+  .confirm{padding:32px 0 20px}
+  .confirm__check{width:56px;height:56px}
+  .confirm__check svg{width:56px;height:56px}
+  .confirm__text{font-size:14px}
+  .progress{padding:20px 0 28px}
+  .progress__circle{width:36px;height:36px;font-size:12px}
+  .progress__label{font-size:11px;max-width:64px}
+  .progress__line{min-width:24px;max-width:60px}
+  .card{padding:24px 18px}
+  .card__header{margin-bottom:12px}
+  .card__text{font-size:13px;margin-bottom:16px}
+  .card__actions{flex-direction:column}
+  .btn{padding:12px 20px;font-size:14px}
+  .btn--gcal,.btn--ics{min-width:auto}
+  .countdown-item{padding:10px 14px;min-width:60px}
+  .countdown-item .num{font-size:22px}
+  .countdown-section__title{font-size:14px}
+}
+
+@media(max-width:414px){
+  :root{--container-px:14px}
+  .confirm__h1{font-size:clamp(22px,6vw,28px)}
+  .card__title{font-size:16px}
+  .card__icon{width:40px;height:40px}
+  .card__icon svg{width:20px;height:20px}
+  .countdown-item{padding:8px 10px;min-width:54px}
+  .countdown-item .num{font-size:20px}
+}
+
+@media(max-width:360px){
+  .confirm__h1{font-size:20px}
+  .confirm__text{font-size:13px}
+  .card{padding:20px 14px}
+  .card__title{font-size:15px}
+  .progress__circle{width:32px;height:32px;font-size:11px}
+  .progress__circle svg{width:14px;height:14px}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow bg-glow--top"></div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <div class="header__title">A Morte da Consultoria Artesanal</div>
+  </div>
+</header>
+
+<!-- CONFIRMATION -->
+<section class="confirm fade-in">
+  <div class="container">
+    <div class="confirm__check">
+      <svg viewBox="0 0 72 72">
+        <circle cx="36" cy="36" r="32"/>
+        <path d="M22 36 L32 46 L50 28"/>
+      </svg>
+    </div>
+    <h1 class="confirm__h1">Inscrição Confirmada!</h1>
+    <p class="confirm__text">Sua vaga está garantida para a masterclass <strong>"A Morte da Consultoria Artesanal"</strong> no dia <strong>10 de março às 18h</strong>.</p>
+  </div>
+</section>
+
+<!-- PROGRESS BAR -->
+<section class="progress fade-in fade-in-delay-1">
+  <div class="container">
+    <div class="progress__bar">
+      <div class="progress__step">
+        <div class="progress__circle active" id="step1-circle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="progress__label active" id="step1-label">Inscrição</div>
+      </div>
+      <div class="progress__line" id="line1">
+        <div class="progress__line-fill"></div>
+      </div>
+      <div class="progress__step">
+        <div class="progress__circle" id="step2-circle">2</div>
+        <div class="progress__label" id="step2-label">WhatsApp</div>
+      </div>
+      <div class="progress__line" id="line2">
+        <div class="progress__line-fill"></div>
+      </div>
+      <div class="progress__step">
+        <div class="progress__circle" id="step3-circle">3</div>
+        <div class="progress__label" id="step3-label">Agenda</div>
+      </div>
+    </div>
+    <div class="progress__percent">Progresso: <strong id="progressPercent">33%</strong></div>
+  </div>
+</section>
+
+<!-- COMPLETE MESSAGE (hidden initially) -->
+<div class="container">
+  <div class="complete-msg" id="completeMsg">
+    <p>Perfeito! Você está 100% preparado. Nos vemos ao vivo!</p>
+  </div>
+</div>
+
+<!-- CARDS -->
+<section class="cards container fade-in fade-in-delay-2">
+
+  <!-- WhatsApp Card -->
+  <div class="card" id="card-whatsapp">
+    <div class="card__header">
+      <div class="card__icon card__icon--whatsapp">
+        <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </div>
+      <h2 class="card__title">Entre no grupo exclusivo</h2>
+    </div>
+    <p class="card__text">Receba materiais, links e atualizações antes do evento. O link de acesso à masterclass será enviado no grupo.</p>
+    <div class="card__actions">
+      <button class="btn btn--whatsapp" id="btnWhatsapp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        ENTRAR NO GRUPO DO WHATSAPP
+      </button>
+    </div>
+  </div>
+
+  <!-- Calendar Card -->
+  <div class="card" id="card-calendar">
+    <div class="card__header">
+      <div class="card__icon card__icon--calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <h2 class="card__title">Salve na sua agenda</h2>
+    </div>
+    <p class="card__text">Não perca a data — adicione agora ao seu calendário para receber um lembrete automático.</p>
+    <div class="card__actions">
+      <button class="btn btn--gcal" id="btnGcal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Google Calendar
+      </button>
+      <button class="btn btn--ics" id="btnIcs">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Outlook / Apple
+      </button>
+    </div>
+  </div>
+
+</section>
+
+<!-- COUNTDOWN -->
+<section class="countdown-section fade-in fade-in-delay-3">
+  <div class="container">
+    <p class="countdown-section__title">Faltam para a masterclass:</p>
+    <div class="countdown-row">
+      <div class="countdown-item"><span class="num" id="cdDays">--</span><span class="label">Dias</span></div>
+      <div class="countdown-item"><span class="num" id="cdHours">--</span><span class="label">Horas</span></div>
+      <div class="countdown-item"><span class="num" id="cdMins">--</span><span class="label">Min</span></div>
+      <div class="countdown-item"><span class="num" id="cdSecs">--</span><span class="label">Seg</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2026 Evolutto. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- CONFETTI CANVAS (for 100% complete) -->
+<canvas id="confetti-canvas"></canvas>
+
+<script>
+// ========== CONFIGURAÇÃO ==========
+var CONFIG = {
+  eventName: 'A Morte da Consultoria Artesanal',
+  eventDate: '2026-03-10T18:00:00-03:00',
+  eventDuration: 90,
+  whatsappGroupUrl: 'https://chat.whatsapp.com/D1vf4yqJlWC8ZDk6KDoIzN'
+};
+
+// ========== COUNTDOWN ==========
+var eventTime = new Date(CONFIG.eventDate).getTime();
+
+function updateCountdown() {
+  var now = Date.now();
+  var diff = eventTime - now;
+  if (diff <= 0) {
+    document.getElementById('cdDays').textContent = '0';
+    document.getElementById('cdHours').textContent = '0';
+    document.getElementById('cdMins').textContent = '0';
+    document.getElementById('cdSecs').textContent = '0';
+    return;
+  }
+  var d = Math.floor(diff / 86400000);
+  var h = Math.floor((diff % 86400000) / 3600000);
+  var m = Math.floor((diff % 3600000) / 60000);
+  var s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cdDays').textContent = d;
+  document.getElementById('cdHours').textContent = h;
+  document.getElementById('cdMins').textContent = m;
+  document.getElementById('cdSecs').textContent = s;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ========== PROGRESS STATE ==========
+var defaultProgress = { step1: true, step2: false, step3: false };
+var progress;
+try {
+  progress = JSON.parse(localStorage.getItem('mc_progress')) || defaultProgress;
+} catch(e) {
+  progress = defaultProgress;
+}
+// Ensure step1 is always true on this page
+progress.step1 = true;
+saveProgress();
+
+function saveProgress() {
+  try { localStorage.setItem('mc_progress', JSON.stringify(progress)); } catch(e) {}
+}
+
+function getPercent() {
+  var count = (progress.step1 ? 1 : 0) + (progress.step2 ? 1 : 0) + (progress.step3 ? 1 : 0);
+  return Math.round((count / 3) * 100);
+}
+
+function updateUI() {
+  var pct = getPercent();
+  document.getElementById('progressPercent').textContent = pct + '%';
+
+  // Step 2
+  if (progress.step2) {
+    document.getElementById('step2-circle').classList.add('active');
+    document.getElementById('step2-circle').innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    document.getElementById('step2-label').classList.add('active');
+    document.getElementById('line1').classList.add('done');
+    document.getElementById('card-whatsapp').classList.add('completed');
+    var whatsBtn = document.getElementById('btnWhatsapp');
+    whatsBtn.classList.add('done');
+    whatsBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Você já está no grupo';
+  }
+
+  // Step 3
+  if (progress.step3) {
+    document.getElementById('step3-circle').classList.add('active');
+    document.getElementById('step3-circle').innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    document.getElementById('step3-label').classList.add('active');
+    document.getElementById('line2').classList.add('done');
+    document.getElementById('card-calendar').classList.add('completed');
+    document.getElementById('btnGcal').classList.add('done');
+    document.getElementById('btnIcs').classList.add('done');
+  }
+
+  // 100% complete
+  if (pct === 100) {
+    document.getElementById('completeMsg').classList.add('show');
+    if (!sessionStorage.getItem('mc_confetti_done')) {
+      sessionStorage.setItem('mc_confetti_done', '1');
+      setTimeout(launchMiniConfetti, 600);
+    }
+  }
+}
+
+updateUI();
+
+// ========== WHATSAPP BUTTON ==========
+document.getElementById('btnWhatsapp').addEventListener('click', function() {
+  if (progress.step2) return;
+  window.open(CONFIG.whatsappGroupUrl, '_blank');
+  progress.step2 = true;
+  saveProgress();
+  updateUI();
+});
+
+// ========== GOOGLE CALENDAR ==========
+document.getElementById('btnGcal').addEventListener('click', function() {
+  // March 10, 2026 18:00 BRT = 21:00 UTC
+  // End: 19:30 BRT = 22:30 UTC
+  var gcalUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+    '&text=' + encodeURIComponent(CONFIG.eventName) +
+    '&dates=20260310T210000Z/20260310T223000Z' +
+    '&details=' + encodeURIComponent('Masterclass: A Morte da Consultoria Artesanal\nData: 10 de março de 2026 às 18h (horário de Brasília)\nDuração: 1h30\nFormato: Ao vivo, sem replay, gratuita\n\nO link de acesso será enviado por email e WhatsApp.') +
+    '&location=Online';
+  window.open(gcalUrl, '_blank');
+  progress.step3 = true;
+  saveProgress();
+  updateUI();
+});
+
+// ========== ICS FILE ==========
+document.getElementById('btnIcs').addEventListener('click', function() {
+  var icsContent = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Masterclass//LP//PT',
+    'BEGIN:VEVENT',
+    'DTSTART:20260310T210000Z',
+    'DTEND:20260310T223000Z',
+    'SUMMARY:' + CONFIG.eventName,
+    'DESCRIPTION:Masterclass: A Morte da Consultoria Artesanal\\nData: 10 de marco de 2026 as 18h (horario de Brasilia)\\nDuracao: 1h30\\nFormato: Ao vivo\\, sem replay\\, gratuita\\n\\nO link de acesso sera enviado por email e WhatsApp.',
+    'LOCATION:Online',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
+
+  var blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'masterclass-consultoria.ics';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  progress.step3 = true;
+  saveProgress();
+  updateUI();
+});
+
+// ========== MINI CONFETTI (100% complete) ==========
+function launchMiniConfetti() {
+  var canvas = document.getElementById('confetti-canvas');
+  canvas.style.display = 'block';
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  var ctx = canvas.getContext('2d');
+  var particles = [];
+  var colors = ['#22c55e','#4ade80','#facc15','#ffffff','#86efac'];
+  var startTime = Date.now();
+  var duration = 2000;
+
+  for (var i = 0; i < 80; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * -canvas.height * 0.5,
+      w: Math.random() * 8 + 4,
+      h: Math.random() * 5 + 3,
+      dx: (Math.random() - 0.5) * 3,
+      dy: Math.random() * 3 + 1.5,
+      rot: Math.random() * Math.PI * 2,
+      drot: (Math.random() - 0.5) * 0.15,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      gravity: 0.04 + Math.random() * 0.02
+    });
+  }
+
+  function animate() {
+    var elapsed = Date.now() - startTime;
+    var prog = elapsed / duration;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(function(p) {
+      p.x += p.dx;
+      p.dy += p.gravity;
+      p.y += p.dy;
+      p.rot += p.drot;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.globalAlpha = Math.max(0, 1 - prog * 0.6);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    });
+
+    if (elapsed < duration) {
+      requestAnimationFrame(animate);
+    } else {
+      canvas.style.display = 'none';
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+// ========== SCROLL REVEAL ==========
+var fadeObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      fadeObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(function(el) {
+  fadeObserver.observe(el);
+});
+</script>
+</body>
+</html>

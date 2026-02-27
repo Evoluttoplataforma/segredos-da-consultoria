@@ -226,8 +226,7 @@ body{padding-top:48px}
   .hero__subtitle{margin-bottom:20px}
   .tension{padding:32px 0}
   .tension__middle{flex-direction:column;gap:16px}
-  .tension__image{flex:none;max-width:100%;order:-1}
-  .tension__image img{max-height:280px;object-fit:cover;width:100%}
+  .tension__image{flex:none;max-width:100%;display:none}
   .solution{padding:48px 0}
   .solution__sub{margin-bottom:24px}
   .learn-cards{gap:10px;margin-bottom:24px}
@@ -498,6 +497,18 @@ var sessionId = (function() {
   }
 })();
 
+// ========== UTM PARAMS ==========
+var urlParams = new URLSearchParams(window.location.search);
+var utmData = {
+  utm_source: urlParams.get('utm_source') || '',
+  utm_medium: urlParams.get('utm_medium') || '',
+  utm_campaign: urlParams.get('utm_campaign') || '',
+  utm_term: urlParams.get('utm_term') || '',
+  utm_content: urlParams.get('utm_content') || '',
+  fbclid: urlParams.get('fbclid') || '',
+  gclid: urlParams.get('gclid') || ''
+};
+
 // ========== COUNTDOWN ==========
 var eventTime = new Date(CONFIG.eventDate).getTime();
 
@@ -716,10 +727,15 @@ function handleSubmit(e, nomeEl, emailEl, telEl, groupNome, groupEmail, groupTel
     nome: firstName,
     sobrenome: lastName || '',
     apex_session_id: sessionId,
-    time_on_page_at_submit: Math.round((Date.now() - pageStart) / 1000)
+    time_on_page_at_submit: Math.round((Date.now() - pageStart) / 1000),
+    utm_source: utmData.utm_source,
+    utm_medium: utmData.utm_medium,
+    utm_campaign: utmData.utm_campaign,
+    utm_term: utmData.utm_term,
+    utm_content: utmData.utm_content
   });
 
-  // Webhook Make — todos os campos incluindo ocultos
+  // Webhook Make — todos os campos incluindo ocultos + UTMs
   fetch(CONFIG.webhookUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -731,6 +747,14 @@ function handleSubmit(e, nomeEl, emailEl, telEl, groupNome, groupEmail, groupTel
       telefone: phoneDigits,
       apex_session_id: sessionId,
       time_on_page_at_submit: Math.round((Date.now() - pageStart) / 1000),
+      utm_source: utmData.utm_source,
+      utm_medium: utmData.utm_medium,
+      utm_campaign: utmData.utm_campaign,
+      utm_term: utmData.utm_term,
+      utm_content: utmData.utm_content,
+      fbclid: utmData.fbclid,
+      gclid: utmData.gclid,
+      page_url: window.location.href,
       source: 'masterclass-lp',
       timestamp: new Date().toISOString()
     })

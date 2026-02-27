@@ -719,14 +719,18 @@ function handleSubmit(e, nomeEl, emailEl, telEl, groupNome, groupEmail, groupTel
     time_on_page_at_submit: Math.round((Date.now() - pageStart) / 1000)
   });
 
-  // Webhook Make
+  // Webhook Make — todos os campos incluindo ocultos
   fetch(CONFIG.webhookUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       nome: fullName,
+      primeiro_nome: firstName,
+      sobrenome: lastName || '',
       email: emailVal,
       telefone: phoneDigits,
+      apex_session_id: sessionId,
+      time_on_page_at_submit: Math.round((Date.now() - pageStart) / 1000),
       source: 'masterclass-lp',
       timestamp: new Date().toISOString()
     })

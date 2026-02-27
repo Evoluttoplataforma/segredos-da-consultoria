@@ -502,6 +502,105 @@ function launchMiniConfetti() {
   requestAnimationFrame(animate);
 }
 
+// ========== CONFETE DE ENTRADA ==========
+function launchEntryConfetti() {
+  var canvas = document.getElementById('confetti-canvas');
+  canvas.style.display = 'block';
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  var ctx = canvas.getContext('2d');
+  var particles = [];
+  var fireworks = [];
+  var colors = ['#DC2626','#f97316','#facc15','#ffffff','#d4a853','#22c55e','#4ade80'];
+  var startTime = Date.now();
+  var duration = 3000;
+
+  for (var i = 0; i < 150; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * -canvas.height,
+      w: Math.random() * 10 + 5,
+      h: Math.random() * 6 + 3,
+      dx: (Math.random() - 0.5) * 4,
+      dy: Math.random() * 3 + 2,
+      rot: Math.random() * Math.PI * 2,
+      drot: (Math.random() - 0.5) * 0.2,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      gravity: 0.04 + Math.random() * 0.03
+    });
+  }
+
+  function createFirework() {
+    var fx = Math.random() * canvas.width * 0.8 + canvas.width * 0.1;
+    var fy = Math.random() * canvas.height * 0.3 + canvas.height * 0.1;
+    var numP = 25 + Math.floor(Math.random() * 15);
+    var fColor = colors[Math.floor(Math.random() * colors.length)];
+    for (var j = 0; j < numP; j++) {
+      var angle = (Math.PI * 2 / numP) * j;
+      var speed = 2 + Math.random() * 2.5;
+      fireworks.push({
+        x: fx, y: fy,
+        dx: Math.cos(angle) * speed,
+        dy: Math.sin(angle) * speed,
+        life: 1,
+        decay: 0.015 + Math.random() * 0.01,
+        color: fColor,
+        r: 1.5 + Math.random() * 2
+      });
+    }
+  }
+
+  createFirework();
+  setTimeout(createFirework, 300);
+  setTimeout(createFirework, 700);
+
+  function animate() {
+    var elapsed = Date.now() - startTime;
+    var prog = elapsed / duration;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(function(p) {
+      p.x += p.dx;
+      p.dy += p.gravity;
+      p.y += p.dy;
+      p.rot += p.drot;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.globalAlpha = Math.max(0, 1 - prog * 0.5);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    });
+
+    fireworks.forEach(function(f) {
+      f.x += f.dx;
+      f.y += f.dy;
+      f.dy += 0.03;
+      f.dx *= 0.98;
+      f.life -= f.decay;
+      if (f.life > 0) {
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.r * f.life, 0, Math.PI * 2);
+        ctx.fillStyle = f.color;
+        ctx.globalAlpha = f.life;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+    });
+
+    if (elapsed < duration) {
+      requestAnimationFrame(animate);
+    } else {
+      canvas.style.display = 'none';
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+// Disparar confete imediatamente ao carregar (continuação do efeito da LP)
+launchEntryConfetti();
+
 // ========== SCROLL REVEAL ==========
 var fadeObserver = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) {

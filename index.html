@@ -112,10 +112,10 @@ body{padding-top:48px}
 .tension__bg img{width:100%;height:100%;object-fit:cover;opacity:0.15}
 .tension__bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(10,10,15,0.6) 30%,rgba(10,10,15,0.6) 70%,var(--bg) 100%)}
 .tension .container{position:relative;z-index:2}
-.tension__h2{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.2;letter-spacing:-0.02em;margin-bottom:0;color:#fff}
+.tension__h2{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.2;letter-spacing:-0.02em;margin-bottom:12px;color:#fff}
 .tension__h2 br{display:block}
-.tension__middle{display:flex;gap:28px;align-items:center;margin-bottom:0}
-.tension__cards{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.tension__middle{display:flex;gap:28px;align-items:center;margin-bottom:16px}
+.tension__cards{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
 .tension__image{flex:0 0 380px;max-width:380px}
 .tension__image img{border-radius:var(--radius-lg);border:1px solid rgba(255,255,255,0.05);width:100%}
 
@@ -225,8 +225,11 @@ body{padding-top:48px}
   .hero__title{margin-bottom:14px}
   .hero__subtitle{margin-bottom:20px}
   .tension{padding:32px 0}
-  .tension__middle{flex-direction:column;gap:16px}
+  .tension__h2{margin-bottom:16px}
+  .tension__middle{flex-direction:column;gap:16px;margin-bottom:20px}
+  .tension__cards{gap:8px}
   .tension__image{flex:none;max-width:100%;display:none}
+  .btn-cta-sub{margin-top:10px;font-size:14px}
   .solution{padding:48px 0}
   .solution__sub{margin-bottom:24px}
   .learn-cards{gap:10px;margin-bottom:24px}
@@ -407,7 +410,7 @@ body{padding-top:48px}
   <div class="container">
     <div class="solution__inner">
       <div class="solution__eyebrow fade-in">O QUE VOCÊ VAI DESCOBRIR</div>
-      <h2 class="solution__h2 fade-in">Consultorias não morrem por falta de clientes.<br>Morrem por modelo.</h2>
+      <h2 class="solution__h2 fade-in">Consultorias não morrem por falta de clientes.<br>Morrem por falta de modelo.</h2>
       <p class="solution__sub fade-in">Mais vendas não resolvem estrutura errada.</p>
       <p class="fade-in" style="font-size:14px;color:var(--text-muted);margin-bottom:16px;text-transform:uppercase;letter-spacing:0.06em;font-weight:600">Na aula você vai entender:</p>
       <div class="learn-cards">
@@ -461,7 +464,7 @@ body{padding-top:48px}
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
-    <p>&copy; 2026 Evolutto. Todos os direitos reservados.<br>Ao se inscrever, você concorda com nossa Política de Privacidade.</p>
+    <p>&copy; 2026 Segredos da Consultoria Escalável. Todos os direitos reservados.<br>Ao se inscrever, você concorda com nossa Política de Privacidade.</p>
   </div>
 </footer>
 

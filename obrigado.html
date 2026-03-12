@@ -203,7 +203,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </svg>
     </div>
     <h1 class="confirm__h1">Inscrição Confirmada!</h1>
-    <p class="confirm__text">Sua vaga está garantida para a masterclass <strong>"A Morte da Consultoria Artesanal"</strong> no dia <strong>10 de março às 18h</strong>.</p>
+    <p class="confirm__text">Sua vaga está garantida para a masterclass <strong>"A Morte da Consultoria Artesanal"</strong> no dia <strong>17 de março às 18h</strong>.</p>
   </div>
 </section>
 
@@ -313,7 +313,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 // ========== CONFIGURAÇÃO ==========
 var CONFIG = {
   eventName: 'A Morte da Consultoria Artesanal',
-  eventDate: '2026-03-10T18:00:00-03:00',
+  eventDate: '2026-03-17T18:00:00-03:00',
   eventDuration: 90,
   whatsappGroupUrl: 'https://chat.whatsapp.com/D1vf4yqJlWC8ZDk6KDoIzN'
 };
@@ -418,8 +418,8 @@ document.getElementById('btnGcal').addEventListener('click', function() {
   // End: 19:30 BRT = 22:30 UTC
   var gcalUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
     '&text=' + encodeURIComponent(CONFIG.eventName) +
-    '&dates=20260310T210000Z/20260310T223000Z' +
-    '&details=' + encodeURIComponent('Masterclass: A Morte da Consultoria Artesanal\nData: 10 de março de 2026 às 18h (horário de Brasília)\nDuração: 1h30\nFormato: Ao vivo, sem replay, gratuita\n\nO link de acesso será enviado por email e WhatsApp.') +
+    '&dates=20260317T210000Z/20260317T223000Z' +
+    '&details=' + encodeURIComponent('Masterclass: A Morte da Consultoria Artesanal\nData: 17 de março de 2026 às 18h (horário de Brasília)\nDuração: 1h30\nFormato: Ao vivo, sem replay, gratuita\n\nO link de acesso será enviado por email e WhatsApp.') +
     '&location=Online';
   window.open(gcalUrl, '_blank');
   progress.step3 = true;
@@ -434,10 +434,10 @@ document.getElementById('btnIcs').addEventListener('click', function() {
     'VERSION:2.0',
     'PRODID:-//Masterclass//LP//PT',
     'BEGIN:VEVENT',
-    'DTSTART:20260310T210000Z',
-    'DTEND:20260310T223000Z',
+    'DTSTART:20260317T210000Z',
+    'DTEND:20260317T223000Z',
     'SUMMARY:' + CONFIG.eventName,
-    'DESCRIPTION:Masterclass: A Morte da Consultoria Artesanal\\nData: 10 de marco de 2026 as 18h (horario de Brasilia)\\nDuracao: 1h30\\nFormato: Ao vivo\\, sem replay\\, gratuita\\n\\nO link de acesso sera enviado por email e WhatsApp.',
+    'DESCRIPTION:Masterclass: A Morte da Consultoria Artesanal\\nData: 17 de marco de 2026 as 18h (horario de Brasilia)\\nDuracao: 1h30\\nFormato: Ao vivo\\, sem replay\\, gratuita\\n\\nO link de acesso sera enviado por email e WhatsApp.',
     'LOCATION:Online',
     'END:VEVENT',
     'END:VCALENDAR'

@@ -19,7 +19,7 @@ ANTES DE COMEÇAR: Leia TODOS os arquivos de referência da skill na ordem:
 
 DADOS DO EVENTO:
 - Nome: "A Morte da Consultoria Artesanal"
-- Data: 10 de março de 2026 às 18h (Brasília)
+- Data: 17 de março de 2026 às 18h (Brasília)
 - Duração: 1h30
 - Formato: Ao vivo, sem replay, gratuita
 - Webhook Make: [COLE_SEU_WEBHOOK_AQUI]

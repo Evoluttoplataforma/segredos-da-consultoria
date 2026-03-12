@@ -7,7 +7,7 @@ Este é o texto aprovado pelo cliente. Usar EXATAMENTE como está, sem alterar a
 ## Dados do Evento
 
 - **Nome:** A Morte da Consultoria Artesanal
-- **Data:** 10 de março de 2026
+- **Data:** 17 de março de 2026
 - **Horário:** 18h (horário de Brasília)
 - **Formato:** Ao vivo, sem replay, sem gravação
 - **Preço:** Gratuita
@@ -27,7 +27,7 @@ Escala e recorrência não é ambição.
 É sobrevivência.
 
 **Info evento:**
-Masterclass gratuita | A Morte da Consultoria Artesanal | 10 de março às 18h
+Masterclass gratuita | A Morte da Consultoria Artesanal | 17 de março às 18h
 
 **Formulário (coluna direita):**
 - Título: "Garanta sua vaga gratuita"
@@ -111,7 +111,7 @@ Adicionar urgência máxima:
 ## PÁGINA DE OBRIGADO
 
 **Título:** Inscrição Confirmada! 🎉
-**Texto:** Sua vaga está garantida para a masterclass "A Morte da Consultoria Artesanal" no dia 10 de março às 18h.
+**Texto:** Sua vaga está garantida para a masterclass "A Morte da Consultoria Artesanal" no dia 17 de março às 18h.
 
 **Barra de progresso:**
 1. ✅ Inscrição confirmada

@@ -15,7 +15,7 @@ No topo do `<script>`, centralizar variáveis:
 ```javascript
 const CONFIG = {
   eventName: 'A Morte da Consultoria Artesanal',
-  eventDate: '2026-03-10T18:00:00-03:00',
+  eventDate: '2026-03-17T18:00:00-03:00',
   eventDuration: 90,
   webhookUrl: 'https://hook.us2.make.com/WEBHOOK_ID',
   whatsappGroupUrl: 'https://chat.whatsapp.com/GRUPO_ID',
@@ -60,7 +60,7 @@ Escala e recorrência não é ambição.
 É sobrevivência.
 
 [Info do evento]
-📅 10 de março às 18h | Ao vivo e sem replay
+📅 17 de março às 18h | Ao vivo e sem replay
 ```
 
 **Coluna Direita — Formulário:**
@@ -254,7 +254,7 @@ Não perca a data — adicione agora ao seu calendário.
 ```
 https://calendar.google.com/calendar/render?action=TEMPLATE
   &text=A Morte da Consultoria Artesanal
-  &dates=20260310T210000Z/20260310T223000Z
+  &dates=20260317T210000Z/20260317T223000Z
   &details=Masterclass gratuita ao vivo...
   &location=Online
 ```
@@ -265,8 +265,8 @@ BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Masterclass//LP//PT
 BEGIN:VEVENT
-DTSTART:20260310T210000Z
-DTEND:20260310T223000Z
+DTSTART:20260317T210000Z
+DTEND:20260317T223000Z
 SUMMARY:A Morte da Consultoria Artesanal
 DESCRIPTION:Masterclass gratuita ao vivo
 LOCATION:Online
